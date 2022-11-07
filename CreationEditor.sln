@@ -8,6 +8,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreationEditor.Skyrim", "Cr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreationEditor.Avalonia", "CreationEditor.Avalonia\CreationEditor.Avalonia.csproj", "{AA82CD3B-8670-42DF-9756-32E5510AA183}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreationEditor.Render", "CreationEditor.Render\CreationEditor.Render.csproj", "{16CC8245-1101-4BAA-B6CD-235269F59B68}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +32,9 @@ Global
 		{AA82CD3B-8670-42DF-9756-32E5510AA183}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AA82CD3B-8670-42DF-9756-32E5510AA183}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AA82CD3B-8670-42DF-9756-32E5510AA183}.Release|Any CPU.Build.0 = Release|Any CPU
+		{16CC8245-1101-4BAA-B6CD-235269F59B68}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{16CC8245-1101-4BAA-B6CD-235269F59B68}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{16CC8245-1101-4BAA-B6CD-235269F59B68}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{16CC8245-1101-4BAA-B6CD-235269F59B68}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
