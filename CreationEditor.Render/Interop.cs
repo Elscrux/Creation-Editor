@@ -66,11 +66,16 @@ public static class Interop {
 
     [DllImport(DllName, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
     public static extern bool initTGEditor(int count, string[] strings);
+    
+    [DllImport(DllName, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
+    public static extern void waitFinishedInit();
 
     public static void Start() {
         Task.Run(() => {
             initTGEditor(0, Array.Empty<string>());
         });
+
+        waitFinishedInit();
         
         addLoadCallback((callbackCount, callbackLoads) => {
             Console.WriteLine($"CALLBACK: {callbackCount}");
@@ -84,7 +89,7 @@ public static class Interop {
         loadReferences(1, new ReferenceLoad[] {
             new() {
                 FormKey = "123456:Skyrim.esm",
-                Path = "test.nif",
+                Path = @"E:\TES\Skyrim\dev\CreationEditor\CreationEditor.WPF.Skyrim\bin\Debug\net6.0-windows\assets\wrhouse02.nif",
                 Transform = new ReferenceTransform {
                     Translation = new Vector3(1, 2, 3),
                     Scale = new Vector3(2, 3, 3),
