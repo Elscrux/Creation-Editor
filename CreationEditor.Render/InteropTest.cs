@@ -1,4 +1,4 @@
-﻿using System.Numerics;
+﻿using Noggog;
 using Xunit;
 namespace CreationEditor.Render; 
 
@@ -8,9 +8,9 @@ public class InteropTest {
         FormKey = "123456:Skyrim.esm",
         Path = "test.nif",
         Transform = new Interop.ReferenceTransform {
-            Translation = new Vector3(1, 2, 3),
-            Scale = new Vector3(2, 3, 3),
-            Rotations = new Vector3()
+            Translation = new P3Float(1, 2, 3),
+            Scale = new P3Float(2, 3, 3),
+            Rotations = new P3Float()
         }
     };
 
