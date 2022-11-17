@@ -1,5 +1,6 @@
 ﻿using System.Numerics;
 using System.Runtime.InteropServices;
+using MutagenLibrary.Core.Plugins;
 namespace CreationEditor.Render;
 
 public static class Interop {
@@ -26,6 +27,11 @@ public static class Interop {
         public string FormKey;
         public UpdateType Update;
         public string Path;
+    }
+    
+    public struct InitConfig {
+        public uint Version;
+        public string AssetDirectory;
     }
 
     [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
@@ -65,17 +71,21 @@ public static class Interop {
     public static extern bool deleteReferences(uint count, string[] formKeys);
 
     [DllImport(DllName, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
-    public static extern bool initTGEditor(int count, string[] strings);
+    public static extern bool initTGEditor(InitConfig count);
+    
+    [DllImport(DllName, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
+    public static extern bool isFinished();
     
     [DllImport(DllName, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
     public static extern void waitFinishedInit();
 
-    public static void Start() {
+    public static void Start(ISimpleEnvironmentContext simpleEnvironmentContext) {
         Task.Run(() => {
-            initTGEditor(0, Array.Empty<string>());
+            initTGEditor(new InitConfig {
+                Version = 1,
+                AssetDirectory = @"E:\TES\Skyrim\vanilla-files\"//simpleEnvironmentContext.DataDirectoryProvider.Path
+            });
         });
-
-        waitFinishedInit();
         
         addLoadCallback((callbackCount, callbackLoads) => {
             Console.WriteLine($"CALLBACK: {callbackCount}");
@@ -86,10 +96,12 @@ public static class Interop {
             }
         });
 
+        waitFinishedInit();
+
         loadReferences(1, new ReferenceLoad[] {
             new() {
                 FormKey = "123456:Skyrim.esm",
-                Path = @"E:\TES\Skyrim\dev\CreationEditor\CreationEditor.WPF.Skyrim\bin\Debug\net6.0-windows\assets\wrhouse02.nif",
+                Path = @"meshes\architecture\whiterun\wrbuildings\wrhouse02.nif",
                 Transform = new ReferenceTransform {
                     Translation = new Vector3(1, 2, 3),
                     Scale = new Vector3(2, 3, 3),

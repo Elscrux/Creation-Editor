@@ -3,12 +3,10 @@ using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Interop;
 using System.Windows.Media;
+using MutagenLibrary.Core.Plugins;
 using Noggog;
 namespace CreationEditor.Render.Views;
 
-public interface IRenderControl {
-    
-}
 public static class WinHelper {
     //Sets a window to be a child window of another window
     [DllImport("user32.dll")]
@@ -33,13 +31,16 @@ public static class WinHelper {
     }
 }
 
-public partial class RenderControl : IRenderControl {
+public partial class RenderControl {
+    private readonly ISimpleEnvironmentContext _environmentContext;
     private readonly Process? _process;
 
-    public RenderControl() {
+    public RenderControl(
+        ISimpleEnvironmentContext environmentContext) {
+        _environmentContext = environmentContext;
         InitializeComponent();
         
-        Interop.Start();
+        Interop.Start(_environmentContext);
 
         _process = 
             Process.GetProcessesByName("CreationEditor.WPF.Skyrim")

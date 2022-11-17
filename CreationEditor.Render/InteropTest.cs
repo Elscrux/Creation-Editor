@@ -17,11 +17,14 @@ public class InteropTest {
     [Fact]
     public async void TestInit() {
         var task = Record.ExceptionAsync(() =>  Task.Run(() => {
-            Interop.initTGEditor(0, Array.Empty<string>());
+            Interop.initTGEditor(new Interop.InitConfig {
+                Version = 1,
+                AssetDirectory = "test"
+            });
         }));
 
-        await Task.Delay(100);
-        
+        Interop.waitFinishedInit();
+
         Assert.Null(task.Exception);
     }
 
