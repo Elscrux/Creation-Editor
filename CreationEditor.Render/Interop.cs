@@ -20,6 +20,10 @@ public static class Interop {
         public string FormKey;
         public string Path;
         public ReferenceTransform Transform;
+
+        public new string ToString() {
+            return $"{FormKey} {Path}";
+        }
     }
 
     public enum UpdateType {
@@ -96,7 +100,7 @@ public static class Interop {
             if (callbackCount == 0) return;
             
             foreach (var load in callbackLoads) {
-                Console.WriteLine($"CALLBACK: {load}");
+                Console.WriteLine($"CALLBACK: {load.ToString()}");
             }
         });
 
@@ -151,7 +155,8 @@ public static class Interop {
                 };
         
                 if (model == null) continue;
-        
+
+                if (!model.Contains(@"\whiterun\wrbuildings\", StringComparison.OrdinalIgnoreCase)) continue;
         
                 var scale = placedObject.Scale ?? 1;
                 
@@ -170,8 +175,6 @@ public static class Interop {
         foreach (var referenceLoad in refs) {
             Console.WriteLine(referenceLoad.ToString());
         }
-        
-        await Task.Delay(5000);
         
         loadReferences(Convert.ToUInt32(refs.Count), refs.ToArray());
     }
