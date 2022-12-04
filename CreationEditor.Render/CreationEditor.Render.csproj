@@ -6,7 +6,7 @@
         <Nullable>enable</Nullable>
         <LangVersion>preview</LangVersion>
         <UseWpf>true</UseWpf>
-        <OutputType>WinExe</OutputType>
+        <OutputType>Library</OutputType>
     </PropertyGroup>
 
     <ItemGroup>
