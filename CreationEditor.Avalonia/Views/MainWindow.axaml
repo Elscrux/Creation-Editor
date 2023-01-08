@@ -57,6 +57,12 @@
                             <fluentIcons:FluentIcon Icon="TextBulletListLtr24Regular"/>
                         </MenuItem.Icon>
                     </MenuItem>
+                    <MenuItem Header="Viewport"
+                              Command="{Binding OpenViewport}">
+                        <MenuItem.Icon>
+                            <fluentIcons:FluentIcon Icon="Desktop24Regular"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
                 </MenuItem>
                 <MenuItem IsVisible="{Binding !!NotificationVM.LoadingItems.Count}"
                           HorizontalAlignment="Right"

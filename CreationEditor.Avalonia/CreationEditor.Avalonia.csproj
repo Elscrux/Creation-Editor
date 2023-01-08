@@ -32,6 +32,7 @@
     </ItemGroup>
 
     <ItemGroup>
+        <ProjectReference Include="..\CreationEditor.Render\CreationEditor.Render.csproj" />
         <ProjectReference Include="..\CreationEditor\CreationEditor.csproj" />
     </ItemGroup>
 

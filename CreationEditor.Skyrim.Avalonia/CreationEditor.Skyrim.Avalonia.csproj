@@ -30,5 +30,11 @@
     <ItemGroup>
       <UpToDateCheckInput Remove="FormKeyPicker\FormKeyStyles.axaml" />
     </ItemGroup>
+    
+    <PropertyGroup>
+        <!-- For Microsoft.CodeAnalysis -->
+        <SatelliteResourceLanguages>en</SatelliteResourceLanguages>
+        <ApplicationManifest>app.manifest</ApplicationManifest>
+    </PropertyGroup>
 
 </Project>

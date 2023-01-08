@@ -31,6 +31,7 @@ public sealed class MainVM : ViewModel {
     
     public ReactiveCommand<Unit, Unit> OpenLog { get; }
     public ReactiveCommand<Unit, Unit> OpenRecordBrowser { get; }
+    public ReactiveCommand<Unit, Unit> OpenViewport { get; }
 
     public MainVM(
         IComponentContext componentContext,
@@ -59,6 +60,8 @@ public sealed class MainVM : ViewModel {
         OpenLog = ReactiveCommand.Create(() => dockFactory.Open(DockElement.Log));
 
         OpenRecordBrowser = ReactiveCommand.Create(() => dockFactory.Open(DockElement.RecordBrowser));
+
+        OpenViewport = ReactiveCommand.Create(() => dockFactory.Open(DockElement.Viewport));
 
         editorEnvironment.ActiveModChanged
             .Subscribe(activeMod => {

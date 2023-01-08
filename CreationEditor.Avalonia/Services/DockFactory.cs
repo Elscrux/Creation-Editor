@@ -5,19 +5,28 @@ using CreationEditor.Avalonia.Models.Docking;
 using CreationEditor.Avalonia.Services.Docking;
 using CreationEditor.Avalonia.ViewModels.Logging;
 using CreationEditor.Avalonia.ViewModels.Record.Browser;
+using CreationEditor.Avalonia.Views;
 using CreationEditor.Avalonia.Views.Logging;
 using CreationEditor.Avalonia.Views.Record;
+using CreationEditor.Render.View;
+using MutagenLibrary.Core.Plugins;
 namespace CreationEditor.Avalonia.Services;
 
 public sealed class DockFactory : IDockFactory {
+    private readonly IMainWindow _mainWindow;
     private readonly IComponentContext _componentContext;
     private readonly IDockingManagerService _dockingManagerService;
-    
+    private readonly ISimpleEnvironmentContext _simpleEnvironmentContext;
+
     public DockFactory(
+        IMainWindow mainWindow,
         IComponentContext componentContext,
-        IDockingManagerService dockingManagerService) {
+        IDockingManagerService dockingManagerService,
+        ISimpleEnvironmentContext simpleEnvironmentContext) {
+        _mainWindow = mainWindow;
         _componentContext = componentContext;
         _dockingManagerService = dockingManagerService;
+        _simpleEnvironmentContext = simpleEnvironmentContext;
     }
     
     public void Open(DockElement dockElement, DockMode? dockMode = null, Dock? dock = null) {
@@ -42,6 +51,17 @@ public sealed class DockFactory : IDockFactory {
                         Header = "Record Browser",
                     },
                     Dock = Dock.Left,
+                    DockMode = DockMode.Layout,
+                    Size = new GridLength(3, GridUnitType.Star),
+                };
+                break;
+            case DockElement.Viewport:
+                control = new RenderView(_simpleEnvironmentContext);
+                dockConfig = new DockConfig {
+                    DockInfo = new DockInfo {
+                        Header = "Viewport",
+                    },
+                    Dock = Dock.Right,
                     DockMode = DockMode.Layout,
                     Size = new GridLength(3, GridUnitType.Star),
                 };

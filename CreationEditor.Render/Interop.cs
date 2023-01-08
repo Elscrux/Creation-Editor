@@ -110,20 +110,21 @@ public static class Interop {
         
         var linkCache = gameEnvironment.LoadOrder[0].Mod.ToImmutableLinkCache();
         var whiterunCell = linkCache.Resolve<ICellGetter>(FormKey.Factory("01A27a:Skyrim.esm"));
-        var whiterunCell2 = linkCache.Resolve<ICellGetter>(FormKey.Factory("01A276:Skyrim.esm"));
-        var whiterunCell3 = linkCache.Resolve<ICellGetter>(FormKey.Factory("01A277:Skyrim.esm"));
-        var whiterunCell4 = linkCache.Resolve<ICellGetter>(FormKey.Factory("01A278:Skyrim.esm"));
-        var whiterunCell5 = linkCache.Resolve<ICellGetter>(FormKey.Factory("01A275:Skyrim.esm"));
+        // var whiterunCell2 = linkCache.Resolve<ICellGetter>(FormKey.Factory("01A276:Skyrim.esm"));
+        // var whiterunCell3 = linkCache.Resolve<ICellGetter>(FormKey.Factory("01A277:Skyrim.esm"));
+        // var whiterunCell4 = linkCache.Resolve<ICellGetter>(FormKey.Factory("01A278:Skyrim.esm"));
+        // var whiterunCell5 = linkCache.Resolve<ICellGetter>(FormKey.Factory("01A275:Skyrim.esm"));
         
         var gridPoint = whiterunCell.Grid.Point;
         
         var origin = new P3Float(gridPoint.X * 4096, gridPoint.Y * 4096, -2000);
         var refs = new List<ReferenceLoad>();
         foreach (var placed in whiterunCell.Temporary.Concat(whiterunCell.Persistent)
-            .Concat(whiterunCell2.Temporary.Concat(whiterunCell2.Persistent))
-            .Concat(whiterunCell3.Temporary.Concat(whiterunCell3.Persistent))
-            .Concat(whiterunCell4.Temporary.Concat(whiterunCell4.Persistent))
-            .Concat(whiterunCell5.Temporary.Concat(whiterunCell5.Persistent))) {
+            // .Concat(whiterunCell2.Temporary.Concat(whiterunCell2.Persistent))
+            // .Concat(whiterunCell3.Temporary.Concat(whiterunCell3.Persistent))
+            // .Concat(whiterunCell4.Temporary.Concat(whiterunCell4.Persistent))
+            // .Concat(whiterunCell5.Temporary.Concat(whiterunCell5.Persistent))
+            ) {
             if (placed is IPlacedObjectGetter placedObject) {
                 var placement = placedObject.Placement;
                 if (placement == null) return;
@@ -163,7 +164,7 @@ public static class Interop {
                 };
         
                 if (model == null) continue;
-
+        
                 var scale = placedObject.Scale ?? 1;
                 
                 refs.Add(new ReferenceLoad {
