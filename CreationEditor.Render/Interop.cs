@@ -134,32 +134,11 @@ public static class Interop {
                 var baseObject = placedObject.Base.Resolve(gameEnvironment.LinkCache);
         
                 var model = baseObject switch {
-                    IActivatorGetter activator => activator.Model?.File.DataRelativePath,
-                    IAlchemicalApparatusGetter alchemicalApparatus => alchemicalApparatus.Model?.File.DataRelativePath,
-                    IAmmunitionGetter ammunition => ammunition.Model?.File.DataRelativePath,
+                    IModeledGetter modeled => modeled.Model?.File.DataRelativePath,
                     IArmorGetter armor => armor.WorldModel.Male.Model?.File.DataRelativePath,
-                    IBookGetter book => book.Model?.File.DataRelativePath,
-                    IContainerGetter container => container.Model?.File.DataRelativePath,
-                    IDoorGetter door => door.Model?.File.DataRelativePath,
-                    IFloraGetter flora => flora.Model?.File.DataRelativePath,
-                    IFurnitureGetter furniture => furniture.Model?.File.DataRelativePath,
-                    IIdleMarkerGetter idleMarker => idleMarker.Model?.File.DataRelativePath,
-                    IIngestibleGetter ingestible => ingestible.Model?.File.DataRelativePath,
-                    IIngredientGetter ingredient => ingredient.Model?.File.DataRelativePath,
-                    IKeyInternal keyInternal => keyInternal.Model?.File.DataRelativePath,
-                    IKeyGetter key => key.Model?.File.DataRelativePath,
-                    ILightGetter light => light.Model?.File.DataRelativePath,
-                    IMiscItemGetter miscItem => miscItem.Model?.File.DataRelativePath,
-                    IMoveableStaticGetter moveableStatic => moveableStatic.Model?.File.DataRelativePath,
-                    IScrollGetter scroll => scroll.Model?.File.DataRelativePath,
-                    ISoulGemGetter soulGem => soulGem.Model?.File.DataRelativePath,
                     ISoundMarkerGetter soundMarker => null,
                     ISpellGetter spell => null,
-                    IStaticGetter @static => @static.Model?.File.DataRelativePath,
-                    ITalkingActivatorGetter talkingActivator => talkingActivator.Model?.File.DataRelativePath,
                     ITextureSetGetter textureSet => null,
-                    ITreeGetter tree => tree.Model?.File.DataRelativePath,
-                    IWeaponGetter weapon => weapon.Model?.File.DataRelativePath,
                     _ => throw new ArgumentOutOfRangeException(nameof(baseObject))
                 };
         
