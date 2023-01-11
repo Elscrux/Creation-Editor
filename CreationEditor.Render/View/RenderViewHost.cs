@@ -23,7 +23,6 @@ public class RenderViewHost : NativeControlHost {
         WinHelper.SetParent(_process.MainWindowHandle, _rootWindow.PlatformImpl.Handle.Handle);
 
         long style = WinHelper.GetWindowLongPtr(_process.MainWindowHandle, WinHelper.StyleIndex);
-        style |= (long) WinHelper.WinStyle.Child;
         style &= (long) ~WinHelper.WinStyle.ResizeBar;
         style &= (long) ~WinHelper.WinStyle.Caption;
 
